@@ -22,4 +22,7 @@
 config/database.yml
 
 public/uploads
+.idea
+.idea/*
 .DS_Store
+*/.DS_Store
