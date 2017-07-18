@@ -1,0 +1,71 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title ManFin
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  body
+   header.top-bar
+     .row.medium-unstack
+       .medium-4.columns.bar-title
+        strong ManFin
+
+   .canvas-wrapper
+     .row.medium-unstack
+        .medium-2.columns.sidebar
+           -if current_user
+            ul.vertical.menu
+              li
+                =link_to new_transaction_path
+                  i.fi-clipboard-pencil.size-36
+                  span Dashboard
+              li
+                =link_to transactions_path
+                  i.fi-bitcoin-circle.size-36
+                  span Transactions
+              li
+                =link_to categories_path
+                  i.fi-list.size-36
+                  span Categories
+
+              li
+                =link_to stats_path
+                  i.fi-graph-bar.size-36
+                  span Statistics
+              li
+                =link_to destroy_user_session_path, method: :delete
+                 i.fi-power.size-36
+                 span Exit
+           -else
+              ul.vertical.menu
+                li
+                  =link_to "Log in", new_user_session_path
+                li
+                  =link_to "Sign up", new_user_registration_path
+        .medium-9.columns
+          .content-wrapper
+           = render 'layouts/messages'
+           ==yield
+
+        .medium-1.columns.cash
+         - if user_signed_in?
+           h4 Money: #{get_account_money}
+         - else
+
+   footer.site-footer
+      .row.medium-unstack
+        .medium-4.columns
+          h4.marketing-site-footer-name ManFin
+          p This is the worst financial manager.
+        .medium-7.columns
+          h5 Powered by:
+          =image_tag "rails_logo.png", width: '55'
+          =image_tag "foundation_logo.png", width: '70'
+      .site-footer-bottom
+        .row.large-unstack.align-middle
+          .column
+            p &copy; 2017 No rights reserved

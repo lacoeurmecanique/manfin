@@ -1,0 +1,31 @@
+h2 Categories
+table.hover
+  thead
+    tr
+      th Name
+      th Transactions
+      th Spent
+      th Earned
+      th Summary
+      th width="210"
+
+  tbody
+    - @categories.each do |category|
+      tr
+        td
+          = category.kind
+        td
+          =@categories_stats[category.id][:transactions]
+        =get_color_of_categories_td(@categories_stats[category.id], :spent)
+        =get_color_of_categories_td(@categories_stats[category.id], :earned)
+        =get_color_of_categories_td(@categories_stats[category.id], :summary)
+        td
+          ul.button-group
+            = link_to 'Destroy', category_path(category),
+                    method: :delete, class: 'button', data: {confirm: 'Are you sure?'}
+
+            = link_to 'Edit', edit_category_path(category),
+                    class: 'button'
+= link_to 'Add', new_category_path(),
+        class: 'small button'
+=will_paginate @categories, renderer: FoundationPagination::Rails

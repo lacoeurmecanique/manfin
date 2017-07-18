@@ -1,0 +1,28 @@
+h2 Transactions
+table.hover
+  thead
+    tr
+      th Value
+      th Data
+      th Category
+      th Description
+      th width="210"
+  tbody
+    - @transactions.each do |transaction|
+      tr
+          =get_color_of_transactions_td(transaction)
+          td
+            = transaction.created_at.strftime("%d.%m.%Y")
+          td
+            = @transactions_categories[transaction.id]
+          td
+            = transaction.description
+          td
+            ul.button-group
+              = link_to 'Destroy', transaction_path(transaction),
+                      method: :delete, class: 'button', data: {confirm: 'Are you sure?'}
+
+              = link_to 'Edit', edit_transaction_path(transaction),
+                      class: 'button'
+
+=will_paginate @transactions, renderer: FoundationPagination::Rails

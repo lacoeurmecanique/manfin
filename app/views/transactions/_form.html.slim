@@ -1,0 +1,11 @@
+= f.label :description
+= f.text_field :description
+= f.label :value
+= f.number_field :value, step: :any, min: 0
+= f.select :category_id, Category.all.collect { |cat| [ cat.kind, cat.id ] }, {multiple: true}
+= f.radio_button :direction, true, checked: true
+= f.label :direction, '+'
+= f.radio_button :direction, false
+= f.label :direction, '-'
+br
+= f.submit :Submit, class: 'success button'

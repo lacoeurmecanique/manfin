@@ -1,0 +1,4 @@
+.new-category-form
+  h2 New category
+  = form_for @category, url: {action: "create"} do |f|
+    =render partial: 'form', locals: {f: f}

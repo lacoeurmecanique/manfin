@@ -1,0 +1,5 @@
+.new-transaction-form
+ h2 New transaction
+ = form_for @transaction, url: {action: "create"} do |f|
+    =render partial: 'form', locals: {f: f}
+

@@ -1,0 +1,4 @@
+.new-transaction-form
+  h2 Edit transaction
+  = form_for @transaction, url: {action: "update"} do |f|
+    = render partial: 'form', locals: {f: f}

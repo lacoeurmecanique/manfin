@@ -1,0 +1,12 @@
+h2 Statistics
+br
+h5 Account statistics
+= line_chart @transactions_stats[:acc_sum]
+br
+= pie_chart @transactions_stats[:category_tr_count]
+br
+h4 Transactions count: #{@transactions_stats[:tr_count]}
+h4 Profitable transactions: #{@transactions_stats[:profit_tr]}
+h4 Losing transactions: #{@transactions_stats[:losing_tr]}
+h4 Totally earned: #{@transactions_stats[:totally_earned]}
+h4 Totally spent: #{- @transactions_stats[:totally_spent]}
